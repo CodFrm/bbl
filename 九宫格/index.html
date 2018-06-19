@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    .grid {
+        font-size: 0;
+        overflow: hidden;
+        border-top: 1px solid #ddd;
+        /* border-bottom: 1px solid #ddd; */
+        color: #777777;
+    }
+
+    .grid>.header-title {
+        font-size: 14px;
+        padding: 8px 4px;
+    }
+
+    .grid>.items>.item {
+        text-align: center;
+        height: 0;
+        width: calc(33.333% - 1px);
+        padding-bottom: 33.333%;
+        float: left;
+        font-size: 16px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .grid>.items>.item:nth-of-type(3n-2) {
+        border-right: 1px solid #ddd;
+    }
+
+    .grid>.items>.item:nth-of-type(3n) {
+        border-left: 1px solid #ddd;
+    }
+
+    .grid>.items>.item .logo {
+        margin-top: 10%;
+        width: 50%;
+        min-height: 40px;
+        border-radius: 100%;
+    }
+
+    .grid>.items>.item .title {
+        margin-top: 5%;
+        display: block;
+        font-size: 14px;
+    }
+</style>
+<script src="grid.js"></script>
+
+<body>
+    <div id="grid" class="grid" style="margin-top: 10px;">
+        <div class="header-title"></div>
+        <div class="items">
+        </div>
+    </div>
+    <br>
+    <button onclick="add()">添加</button>
+    <button onclick="removeall()">清空</button>
+    <button onclick="del()">删除</button>
+</body>
+<script>
+    window.onload = function () {
+        var grid = new 如意九宫格('grid', function (a, b) {
+            console.log(a, b);
+        });
+        // grid.背景色("#000");
+        window.add = function () {
+            grid.置标题("哈哈");
+            console.log(grid.取标题());
+            grid.添加("logo.jpg", "如意");
+        }
+        window.removeall = function () {
+            grid.清空();
+        }
+        window.del = function () {
+            grid.删除(2);
+        }
+    }
+</script>
+
+</html>
