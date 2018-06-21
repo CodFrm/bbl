@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    .ilist {
+        overflow: hidden;
+        font-size: 0;
+    }
+
+    .ilist>.item {
+        display: inline-block;
+        text-align: center;
+        height: 160px;
+        width: calc(33.333% - 6px);
+        font-size: 16px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        margin: 2px 3px;
+    }
+
+    .ilist>.item .item-bg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .ilist>.item .item-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        text-overflow: ellipsis;
+    }
+
+    .ilist>.item .item-title>p {
+        margin: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .item>.right-top {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .item>.left-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: 0 !important;
+    }
+
+    .item>.left-top>.t {
+        position: absolute;
+        z-index: 10;
+        transform: rotate(-45deg);
+        width: 40px;
+        left: -10px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .item>.left-top::after {
+        content: ' ';
+        position: absolute;
+        left: -22px;
+        top: -22px;
+        border-right: 22px solid #00000000;
+        border-bottom: 22px solid #00000000;
+        border-top: 22px solid #00000000;
+        border-left: 22px solid #353535bd;
+        transform: rotate(225deg);
+    }
+
+    .item .f {
+        background: #75757575;
+        color: #f1f1f1;
+        font-size: 14px;
+        padding: 1px 2px;
+    }
+    
+</style>
+<script src="ilist.js"></script>
+
+<body>
+    <div id="ilist" class="ilist" style="margin-top: 10px;">
+        <div class="item">
+            <img src="logo.jpg" class="item-bg">
+            <div class="left-top f">
+                <div class="t">连载</div>
+            </div>
+            <div class="right-top f">高清</div>
+            <div class="item-title f">
+                <p>标题</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="logo.jpg" class="item-bg">
+            <div class="left-top f">
+                <div class="t">连载</div>
+            </div>
+            <div class="right-top f">高清</div>
+            <div class="item-title f">
+                <p>标题</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="logo.jpg" class="item-bg">
+            <div class="left-top f">
+                <div class="t">连载</div>
+            </div>
+            <div class="right-top f">高清</div>
+            <div class="item-title f">
+                <p>标题</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="logo.jpg" class="item-bg">
+            <div class="left-top f">
+                <div class="t">连载</div>
+            </div>
+            <div class="right-top f">高清</div>
+            <div class="item-title f">
+                <p>标题66666666666666666</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <button onclick="add()">添加</button>
+    <button onclick="removeall()">清空</button>
+    <button onclick="del()">删除</button>
+</body>
+<script>
+    window.onload = function () {
+        var ilist = new 如意图文列表('ilist', function (a, b) {
+            console.log(a, b);
+        });
+        // ilist.背景色("#000");
+        window.add = function () {
+            ilist.置标题("哈哈");
+            console.log(ilist.取标题());
+            ilist.添加("logo.jpg", "如意");
+        }
+        window.removeall = function () {
+            ilist.清空();
+        }
+        window.del = function () {
+            ilist.删除(2);
+        }
+    }
+</script>
+
+</html>
