@@ -69,6 +69,7 @@
         z-index: 10;
         transform: rotate(-45deg);
         width: 40px;
+        top: 4px;
         left: -10px;
         font-size: 10px;
         text-align: center;
@@ -79,20 +80,20 @@
         position: absolute;
         left: -22px;
         top: -22px;
-        border-right: 22px solid #00000000;
-        border-bottom: 22px solid #00000000;
-        border-top: 22px solid #00000000;
-        border-left: 22px solid #353535bd;
+        border-right: 22px solid transparent;
+        border-bottom: 22px solid transparent;
+        border-top: 22px solid transparent;
+        border-left: 22px solid #000;
         transform: rotate(225deg);
     }
 
     .item .f {
-        background: #75757575;
-        color: #f1f1f1;
+        background: #000;
+        opacity: .6;
+        color: #fff;
         font-size: 14px;
         padding: 1px 2px;
     }
-    
 </style>
 <script src="ilist.js"></script>
 
@@ -105,7 +106,7 @@
             </div>
             <div class="right-top f">高清</div>
             <div class="item-title f">
-                <p>标题</p>
+                <p class="li-title">标题</pcl>
             </div>
         </div>
         <div class="item">
@@ -115,7 +116,7 @@
             </div>
             <div class="right-top f">高清</div>
             <div class="item-title f">
-                <p>标题</p>
+                <p class="li-title">标题</p>
             </div>
         </div>
         <div class="item">
@@ -125,7 +126,7 @@
             </div>
             <div class="right-top f">高清</div>
             <div class="item-title f">
-                <p>标题</p>
+                <p class="li-title">标题</p>
             </div>
         </div>
         <div class="item">
@@ -135,7 +136,7 @@
             </div>
             <div class="right-top f">高清</div>
             <div class="item-title f">
-                <p>标题66666666666666666</p>
+                <p class="li-title">标题66666666666666666</p>
             </div>
         </div>
     </div>
@@ -147,13 +148,11 @@
 </body>
 <script>
     window.onload = function () {
-        var ilist = new 如意图文列表('ilist', function (a, b) {
-            console.log(a, b);
+        var ilist = new 如意图文列表('ilist', function (index) {
+            console.log(ilist.取标题(index),ilist.取图片(index));
         });
-        // ilist.背景色("#000");
+
         window.add = function () {
-            ilist.置标题("哈哈");
-            console.log(ilist.取标题());
             ilist.添加("logo.jpg", "如意");
         }
         window.removeall = function () {

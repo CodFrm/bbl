@@ -1,48 +1,18 @@
 function 如意图文列表(name, event) {
     var el = document.getElementById(name);
     var ht = el.getElementsByClassName('header-title')[0];
-    var items = el.getElementsByClassName('items')[0];
+    var items = el;
     //组件内部属性，仅供组件内部使用：
     this.名称 = name;
-    //组件命令：
-    this.置标题 = function (newTitle) {
-        if (newTitle == '') {
-            ht.style.display = 'none';
-            el.style.borderTop = "0px";
-        } else {
-            ht.style.display = 'block';
-            el.style.borderTop = "1px solid #ddd";
-        }
-        ht.innerHTML = newTitle;
-    }
-
-    //组件命令：
-    this.取标题 = function () {
-        return ht.innerHTML;
-    }
 
     //组件命令:
-    this.添加 = function (logo, 标题) {
+    this.添加 = function (图片, 标题, 左上, 右上) {
         var newItem = document.createElement('div');
         newItem.className = "item";
-        newItem.innerHTML = '<img class="logo" src="' + logo + '" alt=""><span class="title">' + 标题 + '</span>';
+        newItem.innerHTML = '<img src="' + 图片 + '" class="item-bg">' +
+            (左上 != undefined && 左上 != '' ? '<div class="left-top f"><div class="t">' + 左上 + '</div></div>' : '') +
+            '<div class="right-top f">' + (右上 != undefined && 右上 != '' ? 右上 : '') + '</div><div class="item-title f"><p class="li-title">' + 标题 + '</p></div>';
         items.appendChild(newItem);
-        //移除前面第3个的底部边框
-        var tmp = document.getElementsByClassName('item');
-        //如果是第二个,加右边框
-        if (tmp.length % 3 == 2) {
-            newItem.style.borderRight = "1px solid #ddd";
-        }
-        if (tmp.length % 3 == 0) {
-            tmp[tmp.length - 2].style.borderRight = '0px';
-        }
-        if (tmp.length < 3) {
-            ht.style.borderBottom = "1px solid #ddd";
-        } else {
-            ht.style.borderBottom = "0px";
-            tmp = tmp[tmp.length - 4];
-            tmp.style.borderBottom = "0px";
-        }
     }
 
     //组件命令:
@@ -78,6 +48,7 @@ function 如意图文列表(name, event) {
             var div = document.getElementById(this.名称).parentNode;
             div.style.display = "none"; //不占位隐藏               
         }
+        document.getElementById().getAttribute
     }
 
     //组件命令：
@@ -89,6 +60,22 @@ function 如意图文列表(name, event) {
             var div = document.getElementById(this.名称).parentNode;
             div.style.visibility = "hidden"; //占位隐藏               
         }
+    }
+
+    this.取标题 = function (index) {
+        return index.getElementsByClassName('li-title')[0].innerText;
+    }
+
+    this.置标题 = function (index, str) {
+        index.getElementsByClassName('li-title')[0].innerText = str;
+    }
+
+    this.取图片 = function (index) {
+        return index.getElementsByClassName('item-bg')[0].getAttribute('src');
+    }
+
+    this.置图片 = function (index, img) {
+        return index.getElementsByClassName('item-bg')[0].setAttribute('src', img);
     }
 
     //组件事件
@@ -105,9 +92,11 @@ function 如意图文列表(name, event) {
             if (a.className != 'item') {
                 a = a.parentNode;
             }
+            if (a.className != 'item') {
+                a = a.parentNode;
+            }
             if (a.className == 'item') {
-                console.log(a);
-                event(a.getElementsByClassName('title')[0].innerText, a.getElementsByClassName('logo')[0].src);
+                event(a);
             }
         }
     }
